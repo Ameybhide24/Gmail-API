@@ -1,0 +1,17 @@
+{
+  "name": "gmail_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "run": "nodemon index.js"
+  },
+  "author": "ameybhide",
+  "license": "ISC",
+  "dependencies": {
+    "googleapis": "^60.0.1",
+    "nodemailer": "^6.4.11",
+    "nodemon": "^2.0.4"
+  }
+}
