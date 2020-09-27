@@ -2,8 +2,8 @@ const { google } = require("googleapis");
 const mailComposer = require("nodemailer/lib/mail-composer");
 
 class CreateMail {
-  constructor(auth, to, sub, body, task, attachmentSrc = []) {
-    this.me = "ameybhide2406@gmail.com";
+  constructor(auth, my_email, to, sub, body, task, attachmentSrc = []) {
+    this.me = my_email;
     this.task = task;
     this.auth = auth;
     this.to = to;
@@ -72,13 +72,10 @@ class CreateMail {
       },
       (err, result) => {
         if (err) {
-          return console.log("NODEMAILER - The API returned an error: " + err);
+          return console.log(" The API returned an error: " + err);
         }
 
-        console.log(
-          "NODEMAILER - Sending email reply from server:",
-          result.data
-        );
+        console.log("Sending email reply from server:", result.data);
       }
     );
   }

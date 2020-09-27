@@ -1,13 +1,16 @@
 const fs = require("fs");
 const readline = require("readline");
+const readInput = require("readline-sync");
 const { google } = require("googleapis");
+const { resolve } = require("path");
+const { userInfo } = require("os");
 
-// If modifying these scopes, delete token.json.
 const SCOPES = [
   "https://www.googleapis.com/auth/gmail.readonly",
   "https://www.googleapis.com/auth/gmail.modify",
   "https://www.googleapis.com/auth/gmail.compose",
   "https://www.googleapis.com/auth/gmail.send",
+  "https://www.googleapis.com/auth/userinfo.email",
 ];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
@@ -75,18 +78,24 @@ function getNewToken(oAuth2Client, callback) {
         if (err) return console.error(err);
         console.log("Token stored to", TOKEN_PATH);
       });
+
       callback(oAuth2Client);
     });
   });
 }
 
-function getAuth(auth) {
+async function getAuth(auth) {
+  let recipient_email = readInput.question("Enter Recipient Email: ");
+  let subject_email = readInput.question("Please Enter the Subject of Email: ");
+  let body_email = readInput.question("Please enter the body of Email: ");
+  let my_email = "Your Email address";
   var Mail = require("./createMail.js");
   var obj = new Mail(
     auth,
-    "ameybhide2406@gmail.com",
-    "Test from Amey",
-    "This is Amey Bhide",
+    my_email,
+    recipient_email,
+    subject_email,
+    body_email,
     "mail"
   );
 
